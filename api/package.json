@@ -1,0 +1,7 @@
+{
+  "name": "vuttr",
+  "version": "1.0.0",
+  "description": "very useful tools to remember",
+  "main": "index.js",
+  "license": "MIT"
+}
