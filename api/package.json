@@ -2,6 +2,26 @@
   "name": "vuttr",
   "version": "1.0.0",
   "description": "very useful tools to remember",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "server.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.1",
+    "@types/jsonwebtoken": "^8.3.3",
+    "@types/mongoose": "^5.5.13",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.10"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "eslint": "^6.2.1",
+    "eslint-plugin-import": "^2.18.2",
+    "ts-node-dev": "^1.0.0-pre.41",
+    "typescript": "^3.5.3"
+  }
 }
