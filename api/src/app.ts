@@ -4,11 +4,13 @@ import bodyParser from 'body-parser'
 
 import { requestLogger } from './middlewares/requestLogger'
 import routes from './routes'
+import dotenv from 'dotenv'
 
 class App {
     public express: express.Application
 
     public constructor () {
+      dotenv.config()
       this.express = express()
 
       this.middlewares()
