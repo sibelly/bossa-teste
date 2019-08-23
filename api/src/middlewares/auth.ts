@@ -5,7 +5,8 @@ import config from '../utils/jwt'
 class Auth {
   public validate (req: Request, res: Response, next: NextFunction) {
     console.log('### passando pelo auth middleware => ', req.headers['x-access-token'])
-    var token = req.headers['x-access-token']
+    var token: string
+    token = req.headers['x-access-token'].toString()
 
     if (token) {
       jwt.verify(token, config.jwtSecret, function (err: Error) {

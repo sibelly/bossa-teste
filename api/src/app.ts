@@ -1,5 +1,4 @@
 import express from 'express'
-import { Response } from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 
@@ -45,7 +44,7 @@ class App {
     }
 
     private routes (): void {
-      this.express.route('/api').get((res: Response) => {
+      this.express.route('/api').get((req, res) => {
         res.status(200).send({
           success: true,
           status: '200 Ok',
