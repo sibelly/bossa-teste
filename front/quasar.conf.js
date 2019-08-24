@@ -44,7 +44,9 @@ module.exports = function (ctx) {
         'QList',
         'QItem',
         'QItemSection',
-        'QItemLabel'
+        'QItemLabel',
+        'QCard',
+        'QCardSection'
       ],
 
       directives: [
@@ -53,6 +55,7 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
+        'LocalStorage',
         'Notify'
       ]
     },
@@ -82,7 +85,7 @@ module.exports = function (ctx) {
     devServer: {
       // https: true,
       // port: 8080,
-      open: true // opens browser window automatically
+      open: false // opens browser window automatically
     },
 
     // animations: 'all', // --- includes all animations
