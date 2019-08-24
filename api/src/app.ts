@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 import { requestLogger } from './middlewares/requestLogger'
 import routes from './routes'
@@ -20,7 +21,7 @@ class App {
 
     private middlewares (): void {
       this.express.use(express.json())
-      //this.express.use(cors())
+      this.express.use(cors())
       this.express.use(bodyParser.json({ limit: '50mb' }))
 
       // Para debug
