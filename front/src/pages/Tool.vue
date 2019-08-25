@@ -1,17 +1,21 @@
 <template>
   <q-layout>
     <q-page-container>
-      <q-page class="flex flex-center">
+      <q-page>
 
-        <div><h3>VUTTR</h3></div>
-        <div><h3>Very Useful Tools to Remember</h3></div>
-        <div class=" shadow-4 bg-white column items-center justify-center no-wrap">
-          <q-card class="pb-login-card text-white">
-            <q-card-section>
-              <p>ashduashdusahduash</p>
-            </q-card-section>
-          </q-card>
-        </div>
+asdasdas
+{{ processing }}
+
+{{ tools }}
+
+  <ul>
+    <li
+      v-for="tool in tools"
+      :key="tool.id">
+      {{ 't-' + tool.title }} - {{ 'z' + tool.link }}
+      <br>
+    </li>
+  </ul>
 
       </q-page>
     </q-page-container>
@@ -19,20 +23,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Tool',
-  data () {
-    return {
-      email: '',
-      senha: ''
-    }
-  },
-  created () {
-    console.log('$$$$$$$$$$$$$$$$')
-    this.$store.dispatch('modules/index')
-  },
-  methods: {
-  }
+  computed: mapState({
+    tools: state => state.tool.tools,
+    processing: state => state.processing
+  })
 }
 </script>
 

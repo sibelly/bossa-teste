@@ -1,12 +1,14 @@
-import state from './state'
-import * as getters from './getters'
-import * as mutations from './mutations'
-import * as actions from './actions'
+import camelCase from 'lodash/camelCase'
 
-export default {
-  namespaced: true,
-  getters,
-  mutations,
-  actions,
-  state
-}
+const requireModule = require.context('.', false, /\.js$/) // extrai arquivos js de dentro da pasta
+const modules = {}
+
+requireModule.keys().forEach(filename => {
+  if (filename === './index.js') return // ignora o index
+
+  const moduleName = camelCase(filename.replace(/(\.\/|\.js)/g, ''))
+
+  modules[moduleName] = requireModule(filename).default
+})
+
+export default modules

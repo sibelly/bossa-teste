@@ -1,5 +1,4 @@
-import * as authEndpoints from '../../endpoints/auth'
-import * as toolEndpoints from '../../endpoints/tool'
+import * as authEndpoints from '../endpoints/auth'
 
 /** ****************************************** Autenticacao/Usuarios */
 
@@ -65,34 +64,6 @@ export async function signUp ({ commit }, payload) {
         }
       } else {
         content = error
-      }
-      commit('shared/setShowDialog', { show: true, content: content }, { root: true })
-    })
-}
-
-/** ****************************************** Tools */
-
-export async function index ({ commit }, payload) {
-  console.log('CHAMANDO ACTIOOONS ??')
-  return toolEndpoints.index({ payload })
-    .then((response) => {
-      console.log('response index de tools => ', response)
-      if (response.status === 200) {
-      }
-
-      if (response.status === 401) {
-        let content = {
-          alert: true,
-          title: 'Usuário não autorizado',
-          msg: response.data.errors
-        }
-        commit('shared/setShowDialog', { show: true, content: content }, { root: true })
-      }
-    }).catch((error) => {
-      let content = {
-        alert: true,
-        title: 'Não foi possível listar os bovinos ' + error.data.status,
-        msg: error.data.errors
       }
       commit('shared/setShowDialog', { show: true, content: content }, { root: true })
     })
