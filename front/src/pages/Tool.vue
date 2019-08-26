@@ -16,18 +16,18 @@
             </q-card-section>
             <q-card-section>
               <div class="row items-center no-wrap">
-                <div class="col-3">
-                  <q-input outlined placeholder="search" bg-color="white">
+                <div class="col-lg-10 col-md-5 col-sm-5 col-xs-10">
+                  <q-input outlined placeholder="search" bg-color="white" class="custom-input">
                     <template v-slot:prepend>
                       <q-icon name="search" />
                     </template>
                   </q-input>
                 </div>
-                <div class="col-7">
+                <div class="col-lg-6 col-md-7 col-sm-6 col-xs-3">
                   <q-checkbox v-model="isSearchInTagsOnly" label="search in tags only" class="custom-checkbox"/>
                 </div>
-                <div class="col-3">
-                  <q-btn icon="add" color="white" text-color="black" label="Add" no-caps/>
+                <div class="col-lg-6 col-md-3 col-sm-4 col-xs-2">
+                  <q-btn icon="add" color="white" text-color="black" label="Add" no-caps @click="onAddTool()"/>
                 </div>
               </div>
             </q-card-section>
@@ -47,14 +47,19 @@
                 </div>
 
                 <div class="col-auto">
-                  <q-btn flat icon="clear" no-caps>remove</q-btn>
+                  <q-btn flat icon="clear" no-caps
+                    @click="onRemoveTool(tool)"
+                  >
+                    remove
+                  </q-btn>
                 </div>
               </div>
             </q-card-section>
           </q-card>
 
         </div>
-
+        <add-dialog></add-dialog>
+        <remove-dialog></remove-dialog>
       </q-page>
     </q-page-container>
   </q-layout>
@@ -62,9 +67,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import AddDialog from '../components/AddDialog'
+import RemoveDialog from '../components/RemoveDialog'
 
 export default {
   name: 'Tool',
+  components: {
+    AddDialog,
+    RemoveDialog
+  },
   data () {
     return {
       isSearchInTagsOnly: false
@@ -73,28 +84,43 @@ export default {
   computed: mapState({
     tools: state => state.tool.tools,
     processing: state => state.processing
-  })
+  }),
+  methods: {
+    onRemoveTool (tool) {
+      console.log('### tool', tool)
+      this.$q.dialog({
+        component: RemoveDialog,
+        toolToRemove: tool
+      })
+    },
+    onAddTool () {
+      console.log('### addTool')
+      this.$q.dialog({
+        component: AddDialog
+      })
+    }
+  }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 
 .custom-page-container {
   padding-top: 80px;
   padding-left: 200px;
   padding-right: 200px;
-  background-color: #eeeeee;
+  background-color: var(--q-color-secondary);
 }
 
 .custom-card-banner {
-  background-color: #eeeeee;
+  background-color: var(--q-color-secondary);
 }
 
 .custom-card {
   width: 100%;
 }
 
-.custom-checkbox .q-checkbox__check {
-  color: white;
+.custom-input .q-field__control {
+  height: 40px;
 }
 </style>

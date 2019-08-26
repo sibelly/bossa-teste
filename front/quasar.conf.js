@@ -49,17 +49,21 @@ module.exports = function (ctx) {
         'QCardSection',
         'QCardActions',
         'QInput',
-        'QCheckbox'
+        'QCheckbox',
+        'QDialog',
+        'QSpace'
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
+        'ClosePopup'
       ],
 
       // Quasar plugins
       plugins: [
         'LocalStorage',
-        'Notify'
+        'Notify',
+        'Dialog'
       ]
     },
 
