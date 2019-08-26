@@ -31,7 +31,7 @@
                 name="tags"
               />
             </div>
-            <div class="col-11 q-mt-md">
+            <!-- <div class="col-11 q-mt-md">
               <q-select
                 outlined
                 v-model="teste"
@@ -42,7 +42,7 @@
                 input-debounce="0"
                 new-value-mode="add-unique"
               />
-            </div>
+            </div> -->
         </q-card-section>
 
         <q-card-section>

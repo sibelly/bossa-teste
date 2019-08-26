@@ -54,7 +54,7 @@ export default {
       this.hide()
     },
     onRemoveTool () {
-      this.$store.dispatch('tool/delete', this.toolToRemove._id)
+      this.$store.dispatch('tool/delete', this.toolToRemove)
     }
   }
 

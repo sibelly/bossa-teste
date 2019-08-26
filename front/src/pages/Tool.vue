@@ -21,7 +21,7 @@
                     class="custom-input"
                     @input="searchTools()"
                     v-model="searchTerm"
-                    debounce="500"
+                    debounce="700"
                   >
                     <template v-slot:prepend>
                       <q-icon name="search" />
@@ -43,7 +43,6 @@
             :key="tool.id"
             :tool="tool"
           >
-          oi
           </tool-card>
 
         </div>

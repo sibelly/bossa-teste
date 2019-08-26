@@ -11,12 +11,12 @@ routes.get('/', ToolController.index)
 routes.post('/', ToolController.create)
 
 // GET tools/:id
-routes.get('/:id', ToolController.show)
+routes.get('/:_id', ToolController.show)
 
 // PUT tools/:id
-routes.put('/:id', ToolController.update)
+routes.put('/:_id', ToolController.update)
 
 // DELETE tools/:id
-routes.delete('/:id', ToolController.destroy)
+routes.delete('/:_id', ToolController.destroy)
 
 export default routes

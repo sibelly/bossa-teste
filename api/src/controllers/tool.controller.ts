@@ -14,14 +14,11 @@ class ToolController {
  */
   public async index (req: Request, res: Response): Promise<Response> {
     let tools
-    console.log('req.query', req.query)
     if (req.query && req.query.tag) {
-      let tag = req.query.tag.split('=')
-      tools = await Tool.find({tags: {"$in": `[${ tag[0] }]` }})
+      tools = await Tool.find({ tags: req.query.tag })
       return res.status(200).json(tools)
     } else if (req.query && req.query.filter) {
-      let filter = req.query.filter.split('=')
-      tools = await Tool.find({ title: filter[0] })
+      tools = await Tool.find({ title: req.query.filter })
       return res.status(200).json(tools)
     } else {
       tools = await Tool.find()
@@ -56,7 +53,7 @@ class ToolController {
  * @apiSuccess (200) {json} Existing tool.
  */
   public async show (req: Request, res: Response): Promise<Response> {
-    const tool = await Tool.findOne(req.body)
+    const tool = await Tool.findOne(req.params)
 
     return res.status(200).json(tool)
   }
@@ -81,7 +78,8 @@ class ToolController {
  * @apiSuccess (200) {json} Delete tool.
  */
   public async destroy (req: Request, res: Response): Promise<Response> {
-    const tool = await Tool.deleteOne(req.body)
+    console.log('## destroy controller =>', req.params)
+    const tool = await Tool.deleteOne(req.params)
     return res.status(200).json(tool)
   }
 }

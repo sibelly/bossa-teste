@@ -22,10 +22,11 @@ const actions = {
   index: async ({ commit }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
     commit('SET_TOOLS', [])
-
+    console.log('### tamo no index =>', payload)
     return toolEndpoints.index({ payload })
       .then((response) => {
         if (response.status === 200) {
+          console.log('### response.data =>', response.data)
           commit('SET_TOOLS', response.data)
           commit('SET_PROCESSING', false, { root: true })
         }
@@ -73,8 +74,9 @@ const actions = {
         })
       })
   },
-  delete: ({ commit, getters }, payload) => {
+  delete: ({ commit }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
+    console.log('## destroy action=', payload)
     return toolEndpoints.destroy({ payload })
       .then((response) => {
         if (response.status === 200) {
