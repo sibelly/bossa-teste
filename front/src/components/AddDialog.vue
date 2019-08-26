@@ -9,25 +9,33 @@
         <q-card-section class="q-pa-lg">
             <div class="col-11">
               <div class="text-h7">Tool name</div>
-              <q-input outlined v-model="form.tool" class="custom-input"/>
+              <q-input outlined v-model="form.title" class="custom-input"
+                required name="title"
+              />
             </div>
             <div class="col-11 q-mt-md">
               <div class="text-h7">Tool link</div>
-              <q-input outlined v-model="form.link" class="custom-input"/>
+              <q-input outlined v-model="form.link" class="custom-input"
+                required name="link"
+              />
             </div>
             <div class="col-11 q-mt-md">
               <div class="text-h7">Tool description</div>
-              <q-input type="textarea" rows="3" outlined v-model="form.description"/>
+              <q-input type="textarea" rows="3" outlined v-model="form.description"
+                name="description"
+              />
             </div>
             <div class="col-11 q-mt-md">
               <div class="text-h7">Tags</div>
-              <q-input outlined v-model="form.tags" class="custom-input"/>
+              <q-input outlined v-model="form.tags" class="custom-input"
+                name="tags"
+              />
             </div>
         </q-card-section>
 
         <q-card-section>
           <q-card-actions class="float-right">
-            <q-btn label="Add tool" text-color="black" v-close-popup no-caps/>
+            <q-btn label="Add tool" text-color="black" v-close-popup no-caps @click="addTool()"/>
           </q-card-actions>
         </q-card-section>
 
@@ -59,6 +67,10 @@ export default {
     },
     onCancelClick () {
       this.hide()
+    },
+    addTool () {
+      console.log('### addTool')
+      this.$store.dispatch('tool/create', this.form)
     }
   }
 

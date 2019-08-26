@@ -8,15 +8,14 @@ export function index (data) {
 }
 
 export function create (data) {
-  console.log('request create => ', data)
   var params
-  if (data.params) {
+  if (data.payload) {
     params = data.payload
   }
   return request({
     url: `/tools`,
     method: 'post',
-    params
+    data: params
   })
 }
 
@@ -33,13 +32,13 @@ export function update (data) {
   return request({
     url: `/tools/${data.payload._id}`,
     method: 'put',
-    params
+    data: params
   })
 }
 
 export function destroy (data) {
   return request({
-    url: `/tools/${data.payload._id}`,
+    url: `/tools/${data.payload}`,
     method: 'delete'
   })
 }

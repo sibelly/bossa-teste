@@ -48,7 +48,7 @@
 
                 <div class="col-auto">
                   <q-btn flat icon="clear" no-caps
-                    @click="onRemoveTool(tool)"
+                    @click="confirmRemoveTool(tool)"
                   >
                     remove
                   </q-btn>
@@ -86,15 +86,13 @@ export default {
     processing: state => state.processing
   }),
   methods: {
-    onRemoveTool (tool) {
-      console.log('### tool', tool)
+    confirmRemoveTool (tool) {
       this.$q.dialog({
         component: RemoveDialog,
         toolToRemove: tool
       })
     },
     onAddTool () {
-      console.log('### addTool')
       this.$q.dialog({
         component: AddDialog
       })

@@ -4,7 +4,7 @@
   "description": "very useful tools to remember",
   "productName": "vuttr",
   "cordovaId": "org.cordova.quasar.app",
-  "author": "sibelly <sibellychan@hotmail.com>",
+  "author": "sibelly <sibellycavalcante@gmail.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",

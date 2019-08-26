@@ -9,7 +9,7 @@
       <q-card-section>
         <div class="row items-center no-wrap">
           <div class="col">
-            <div class="text-h7">Are you sure you want to remove name</div>
+            <div class="text-h7">Are you sure you want to remove {{ toolToRemove.title }}</div>
           </div>
 
         </div>
@@ -17,7 +17,9 @@
 
       <q-card-actions align="right">
         <q-btn label="Cancel" text-color="black" v-close-popup no-caps />
-        <q-btn label="Yes,remove" text-color="black" v-close-popup no-caps/>
+        <q-btn label="Yes,remove" text-color="black" v-close-popup no-caps
+          @click="onRemoveTool()"
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -28,7 +30,10 @@ export default {
   name: 'RemoveDialog',
   props: {
     toolToRemove: {
-      type: Object
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
   methods: {
@@ -47,6 +52,9 @@ export default {
     },
     onCancelClick () {
       this.hide()
+    },
+    onRemoveTool () {
+      this.$store.dispatch('tool/delete', this.toolToRemove._id)
     }
   }
 

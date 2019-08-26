@@ -41,6 +41,30 @@ const actions = {
       }).catch((error) => {
         console.log('### ', error)
       })
+  },
+  create: ({ commit }, payload) => {
+    commit('SET_PROCESSING', true, { root: true })
+    return toolEndpoints.create({ payload })
+      .then((response) => {
+        if (response.status === 200) {
+          commit('SET_TOOLS', response.data)
+          commit('SET_PROCESSING', false, { root: true })
+        }
+      }).catch((error) => {
+        console.log('### ', error)
+      })
+  },
+  delete: ({ commit }, payload) => {
+    commit('SET_PROCESSING', true, { root: true })
+    return toolEndpoints.destroy({ payload })
+      .then((response) => {
+        if (response.status === 200) {
+          commit('SET_TOOLS', response.data)
+          commit('SET_PROCESSING', false, { root: true })
+        }
+      }).catch((error) => {
+        console.log('### ', error)
+      })
   }
 
 }

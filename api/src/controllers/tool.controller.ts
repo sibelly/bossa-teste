@@ -11,7 +11,7 @@ class ToolController {
     const tool = await Tool.create(req.body)
 
 
-    return res.json(tool)
+    return res.status(201).json(tool)
   }
 
   public async show (req: Request, res: Response): Promise<Response> {

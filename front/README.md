@@ -1,26 +1,19 @@
-# vuttr (vuttr)
+# vuttr - front
 
-very useful tools to remember
+## Instala as dependências
 
-## Install the dependencies
 ```bash
 yarn
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Inicia o app no modo de development
+
 ```bash
 quasar dev
 ```
 
-### Lint the files
+### Lint nos arquivos
+
 ```bash
 yarn run lint
 ```
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
