@@ -8,6 +8,8 @@ yarn
 
 ## Inicia o app no modo de development
 
+**Antes de iniciar a aplicação é necessário criar um arquivo ```.env``` no diretório /api com as informações do seu banco de dados local, vide arquivo ```.env.example```.**
+
 ```bash
 yarn dev
 ```
