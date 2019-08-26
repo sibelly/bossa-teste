@@ -10,7 +10,7 @@ const ToolSchema = new Schema({
     type: String
   },
   tags: {
-    type: Array
+    type: [String]
   }
 }, {
   timestamps: true

@@ -1,6 +1,8 @@
-# vuttr - api
+# VUTTR - api
 
 ## Instala as dependências
+
+Executar os comandos abaixo dentro do diretório ```/api``` no repositório clonado anteriormente.
 
 ```bash
 yarn
