@@ -1,12 +1,10 @@
 import request from './request'
 
 export function index (data) {
-  console.log('endpoints data=', data)
   var params = ''
   if (data.payload) {
     params = data.payload
   }
-  console.log('### endpoints index tool=', params)
   return request({
     url: `/tools${params}`,
     method: 'get'

@@ -38,79 +38,50 @@
             </q-card-section>
           </q-card>
 
-          <q-card flat bordered class="custom-card"
-                  v-for="tool in tools"
-                  :key="tool.id"
+          <tool-card
+            v-for="tool in toolsGet"
+            :key="tool.id"
+            :tool="tool"
           >
-            <q-card-section>
-              <div class="row no-wrap">
-                <div class="col">
-                  <div class="text-h6">
-                    <a v-if="tool.link" :href="tool.link" target="_blank">{{ tool.title }}</a>
-                    </div>
-                  <div class="text-subtitle">{{ tool.description }}</div>
-                </div>
-
-                <div class="col-auto">
-                  <q-btn flat icon="clear" no-caps
-                    @click="confirmRemoveTool(tool)"
-                  >
-                    remove
-                  </q-btn>
-                </div>
-              </div>
-            </q-card-section>
-
-            <q-card-section>
-              <div class="row no-wrap">
-                <div class="col">
-                  <span class="text-subtitle text-bold"
-                    v-for="(tag, index) in tool.tags"
-                    :key="tag + index"
-                  >
-                    #{{ tag }}
-                  </span>
-                </div>
-              </div>
-            </q-card-section>
-          </q-card>
+          oi
+          </tool-card>
 
         </div>
         <add-dialog></add-dialog>
-        <remove-dialog></remove-dialog>
       </q-page>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import AddDialog from '../components/AddDialog'
-import RemoveDialog from '../components/RemoveDialog'
+import ToolCard from '../components/ToolCard'
 
 export default {
   name: 'Tool',
   components: {
     AddDialog,
-    RemoveDialog
+    ToolCard
   },
   data () {
     return {
       isSearchInTagsOnly: false,
-      searchTerm: ''
+      searchTerm: '',
+      tools: []
     }
   },
-  computed: mapState({
-    tools: state => state.tool.tools,
-    processing: state => state.processing
-  }),
-  methods: {
-    confirmRemoveTool (tool) {
-      this.$q.dialog({
-        component: RemoveDialog,
-        toolToRemove: tool
-      })
+  computed: {
+    ...mapGetters(['tool/getTools']),
+    toolsGet () {
+      return this.$store.getters['tool/getTools']
     },
+    toolsDirect () {
+      console.log('### toolsDirect=', this.$store.state.tools)
+      return this.$store.state.tools
+    }
+  },
+  methods: {
     onAddTool () {
       this.$q.dialog({
         component: AddDialog
@@ -128,6 +99,9 @@ export default {
           this.$store.dispatch('tool/index', params)
         }
       }
+    },
+    reloadList () {
+      console.log('## reload list')
     }
   }
 }

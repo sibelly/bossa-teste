@@ -14,18 +14,15 @@ const getters = {
 
 const mutations = {
   SET_TOOLS: (state, tools) => {
-    console.log('### SET_TOOLS', tools)
-    console.log('### STATE', state)
     state.tools = tools
-    console.log('### SET_TOOLS after', tools)
-    console.log('### STATE after', state)
   }
 }
 
 const actions = {
   index: async ({ commit }, payload) => {
-    console.log('## action payload=', payload)
     commit('SET_PROCESSING', true, { root: true })
+    commit('SET_TOOLS', [])
+
     return toolEndpoints.index({ payload })
       .then((response) => {
         if (response.status === 200) {
@@ -40,12 +37,11 @@ const actions = {
         })
       })
   },
-  initStore: ({ commit }, payload) => {
+  initStore: ({ commit, getters }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
     return toolEndpoints.index({ payload })
       .then((response) => {
         if (response.status === 200) {
-          console.log('## init store', response)
           commit('SET_TOOLS', response.data)
           commit('SET_PROCESSING', false, { root: true })
         }
@@ -53,18 +49,21 @@ const actions = {
         console.log('### ', error)
       })
   },
-  create: ({ commit }, payload) => {
+  create: ({ commit, getters }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
-
     return toolEndpoints.create({ payload })
       .then((response) => {
         if (response.status === 201) {
-          console.log('response data create', response.data)
           commit('SET_PROCESSING', false, { root: true })
           Notify.create({
             message: 'Tool criada com sucesso!',
             color: 'green'
           })
+
+          commit('SET_TOOLS', [])
+          commit('SET_TOOLS', getters['getTools'])
+          console.log('### getters=', getters['getTools'])
+          commit('SET_PROCESSING', false, { root: true })
         }
       }).catch((error) => {
         console.log('### ', error)
@@ -79,7 +78,7 @@ const actions = {
     return toolEndpoints.destroy({ payload })
       .then((response) => {
         if (response.status === 200) {
-          commit('SET_TOOLS', response.data)
+          console.log(response.data)
           commit('SET_PROCESSING', false, { root: true })
         }
       }).catch((error) => {

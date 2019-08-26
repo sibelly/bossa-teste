@@ -7,9 +7,6 @@ const routes = Router()
 // GET usuarios
 routes.get('/', UsuarioController.index)
 
-// POST usuarios
-routes.post('/', UsuarioController.create)
-
 // GET usuarios/:id
 routes.get('/:id', UsuarioController.show)
 

@@ -5,8 +5,18 @@ import Usuario from '../schemas/usuario/usuario'
 import { IUsuario } from '../schemas/usuario/usuario.interface';
 
 class AuthController {
+
+/**
+ * @api {get} /registrar Create user
+ * @apiParam {String} [email] email param.
+ * @apiParam {String} [nome] nome param.
+ * @apiParam {String} [senha] senha param.
+ *
+ * @apiGroup Auth
+ *
+ * @apiSuccess (200) {json} Created user.
+ */
   public async registrar (req: Request, res: Response, next:NextFunction) {
-    console.log('registraaaar!!!')
     const email = req.body.email
     const senha = req.body.senha
 
@@ -33,6 +43,15 @@ class AuthController {
     })
   }
 
+/**
+ * @api {get} /login Authenticates user
+ * @apiParam {String} [email] email param.
+ * @apiParam {String} [senha] senha param.
+ *
+ * @apiGroup Auth
+ *
+ * @apiSuccess (200) {json} Created user.
+ */
   public async login (req: Request, res: Response, next:NextFunction): Promise<Response> {
     const email = req.body.email;
     const senha = req.body.senha;
