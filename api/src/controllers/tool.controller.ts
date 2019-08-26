@@ -3,7 +3,6 @@ import Tool from '../schemas/tool/tool'
 
 class ToolController {
   public async index (req: Request, res: Response): Promise<Response> {
-    console.log('req=>', req)
     const tools = await Tool.find()
     return res.json(tools)
   }
@@ -11,7 +10,6 @@ class ToolController {
   public async create (req: Request, res: Response): Promise<Response> {
     const tool = await Tool.create(req.body)
 
-    console.log('req => ', req.body)
 
     return res.json(tool)
   }

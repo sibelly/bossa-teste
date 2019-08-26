@@ -20,9 +20,9 @@ class App {
     }
 
     private middlewares (): void {
-      this.express.use(express.json())
       this.express.use(cors())
-      this.express.use(bodyParser.json({ limit: '50mb' }))
+      this.express.use(bodyParser.urlencoded({ extended: true }))
+      this.express.use(bodyParser.json())
 
       // Para debug
       this.express.use(requestLogger)
