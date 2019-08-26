@@ -51,7 +51,8 @@ module.exports = function (ctx) {
         'QInput',
         'QCheckbox',
         'QDialog',
-        'QSpace'
+        'QSpace',
+        'QSelect'
       ],
 
       directives: [

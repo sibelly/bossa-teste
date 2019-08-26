@@ -31,6 +31,18 @@
                 name="tags"
               />
             </div>
+            <div class="col-11 q-mt-md">
+              <q-select
+                outlined
+                v-model="teste"
+                use-input
+                use-chips
+                multiple
+                hide-dropdown-icon
+                input-debounce="0"
+                new-value-mode="add-unique"
+              />
+            </div>
         </q-card-section>
 
         <q-card-section>
@@ -44,11 +56,19 @@
 </template>
 
 <script>
+import { Notify } from 'quasar'
+
 export default {
   name: 'AddDialog',
   data () {
     return {
-      form: {}
+      teste: [],
+      form: {
+        title: '',
+        link: '',
+        description: '',
+        tags: ''
+      }
     }
   },
   methods: {
@@ -69,8 +89,14 @@ export default {
       this.hide()
     },
     addTool () {
-      console.log('### addTool')
-      this.$store.dispatch('tool/create', this.form)
+      if (this.form.title === '' || this.form.description === '') {
+        Notify.create({
+          message: 'Oops! Insira pelo menos um título e uma descrição',
+          color: 'red'
+        })
+      } else {
+        this.$store.dispatch('tool/create', this.form)
+      }
     }
   }
 

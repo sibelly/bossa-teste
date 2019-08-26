@@ -1,6 +1,8 @@
-# vuttr - front
+# VUTTR - front
 
 ## Instala as dependências
+
+Executar os comandos abaixo dentro do diretório ```/front``` no repositório clonado anteriormente.
 
 ```bash
 yarn

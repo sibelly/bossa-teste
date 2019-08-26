@@ -12,7 +12,6 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (serviceConfig) => {
-    console.log('#### request.use')
     Loading.show()
     let token = LocalStorage.getItem('token')
     if (token) {

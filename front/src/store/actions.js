@@ -3,14 +3,11 @@ import * as authEndpoints from '../endpoints/auth'
 /** ****************************************** Autenticacao/Usuarios */
 
 export async function signIn ({ commit }, payload) {
-  console.log('### huehue')
   return authEndpoints.login(payload)
     .then((response) => {
-      console.info('### => ', process.env)
-      console.log('### response => ', response)
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token)
-        this.$router.push('/dashboard')
+        this.$router.push('/')
       }
 
       if (response.status === 401) {
@@ -38,12 +35,11 @@ export async function signIn ({ commit }, payload) {
 }
 
 export async function signUp ({ commit }, payload) {
-  console.log('### chegou no store => ', payload)
   return authEndpoints.registrar(payload)
     .then((response) => {
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token)
-        this.$router.push('/dashboard')
+        this.$router.push('/')
       }
 
       if (response.status === 401) {

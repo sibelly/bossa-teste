@@ -17,14 +17,19 @@
             <q-card-section>
               <div class="row items-center no-wrap">
                 <div class="col-lg-10 col-md-5 col-sm-5 col-xs-10">
-                  <q-input outlined placeholder="search" bg-color="white" class="custom-input">
+                  <q-input outlined placeholder="search" bg-color="white"
+                    class="custom-input"
+                    @input="searchTools()"
+                    v-model="searchTerm"
+                    debounce="500"
+                  >
                     <template v-slot:prepend>
                       <q-icon name="search" />
                     </template>
                   </q-input>
                 </div>
                 <div class="col-lg-6 col-md-7 col-sm-6 col-xs-3">
-                  <q-checkbox v-model="isSearchInTagsOnly" label="search in tags only" class="custom-checkbox"/>
+                  <q-checkbox v-model="isSearchInTagsOnly" label="search in tags only" />
                 </div>
                 <div class="col-lg-6 col-md-3 col-sm-4 col-xs-2">
                   <q-btn icon="add" color="white" text-color="black" label="Add" no-caps @click="onAddTool()"/>
@@ -38,10 +43,10 @@
                   :key="tool.id"
           >
             <q-card-section>
-              <div class="row items-center no-wrap">
+              <div class="row no-wrap">
                 <div class="col">
                   <div class="text-h6">
-                    <q-btn flat @click=tool.link> {{ tool.title }}</q-btn>
+                    <a v-if="tool.link" :href="tool.link" target="_blank">{{ tool.title }}</a>
                     </div>
                   <div class="text-subtitle">{{ tool.description }}</div>
                 </div>
@@ -52,6 +57,19 @@
                   >
                     remove
                   </q-btn>
+                </div>
+              </div>
+            </q-card-section>
+
+            <q-card-section>
+              <div class="row no-wrap">
+                <div class="col">
+                  <span class="text-subtitle text-bold"
+                    v-for="(tag, index) in tool.tags"
+                    :key="tag + index"
+                  >
+                    #{{ tag }}
+                  </span>
                 </div>
               </div>
             </q-card-section>
@@ -78,7 +96,8 @@ export default {
   },
   data () {
     return {
-      isSearchInTagsOnly: false
+      isSearchInTagsOnly: false,
+      searchTerm: ''
     }
   },
   computed: mapState({
@@ -96,6 +115,19 @@ export default {
       this.$q.dialog({
         component: AddDialog
       })
+    },
+    searchTools () {
+      if (this.searchTerm !== '') {
+        if (this.isSearchInTagsOnly) {
+          let params = `?tag=${this.searchTerm}`
+          console.log('params tool.vue=', params)
+          this.$store.dispatch('tool/index', params)
+        } else {
+          let params = `?filter=${this.searchTerm}`
+          console.log('params tool.vue=', params)
+          this.$store.dispatch('tool/index', params)
+        }
+      }
     }
   }
 }
