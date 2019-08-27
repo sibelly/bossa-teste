@@ -39,7 +39,7 @@
           </q-card>
 
           <tool-card
-            v-for="tool in tools"
+            v-for="tool in toolsGet"
             :key="tool.id"
             :tool="tool"
           >

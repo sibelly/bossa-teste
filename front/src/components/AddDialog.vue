@@ -96,17 +96,8 @@ export default {
         })
       } else {
         this.$store.dispatch('tool/create', this.form)
-        this.reloadList()
+        setTimeout(function () { window.reload() }, 1000)
       }
-    },
-    reloadList () {
-      this.$nextTick(() => {
-        this.tools = this.toolsGet
-        console.log('re-render start=>', this.tools)
-        this.$nextTick(() => {
-          console.log('re-render end')
-        })
-      })
     }
   }
 

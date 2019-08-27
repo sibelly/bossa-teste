@@ -25,6 +25,7 @@ const actions = {
     return toolEndpoints.index({ payload })
       .then((response) => {
         if (response.status === 200) {
+          console.log('tool/index', response.data)
           commit('SET_TOOLS', response.data)
           commit('SET_PROCESSING', false, { root: true })
         }
@@ -41,6 +42,7 @@ const actions = {
     return toolEndpoints.index({ payload })
       .then((response) => {
         if (response.status === 200) {
+          console.log('tool/initStore', response.data)
           commit('SET_TOOLS', response.data)
           commit('SET_PROCESSING', false, { root: true })
         }
