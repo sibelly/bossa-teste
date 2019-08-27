@@ -55,7 +55,7 @@ export default {
     },
     onRemoveTool () {
       this.$store.dispatch('tool/delete', this.toolToRemove)
-      setTimeout(function () { window.reload() }, 1000)
+      setTimeout(function () { location.reload() }, 1000)
     }
   }
 

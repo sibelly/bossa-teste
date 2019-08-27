@@ -96,7 +96,7 @@ export default {
         })
       } else {
         this.$store.dispatch('tool/create', this.form)
-        setTimeout(function () { window.reload() }, 1000)
+        setTimeout(function () { location.reload() }, 1000)
       }
     }
   }
