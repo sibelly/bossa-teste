@@ -39,7 +39,7 @@
           </q-card>
 
           <tool-card
-            v-for="tool in toolsGet"
+            v-for="tool in tools"
             :key="tool.id"
             :tool="tool"
           >
@@ -76,7 +76,6 @@ export default {
       return this.$store.getters['tool/getTools']
     },
     toolsDirect () {
-      console.log('### toolsDirect=', this.$store.state.tools)
       return this.$store.state.tools
     }
   },
@@ -90,17 +89,12 @@ export default {
       if (this.searchTerm !== '') {
         if (this.isSearchInTagsOnly) {
           let params = `?tag=${this.searchTerm}`
-          console.log('params tool.vue=', params)
           this.$store.dispatch('tool/index', params)
         } else {
           let params = `?filter=${this.searchTerm}`
-          console.log('params tool.vue=', params)
           this.$store.dispatch('tool/index', params)
         }
       }
-    },
-    reloadList () {
-      console.log('## reload list')
     }
   }
 }

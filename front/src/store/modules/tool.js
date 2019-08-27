@@ -22,11 +22,9 @@ const actions = {
   index: async ({ commit }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
     commit('SET_TOOLS', [])
-    console.log('### tamo no index =>', payload)
     return toolEndpoints.index({ payload })
       .then((response) => {
         if (response.status === 200) {
-          console.log('### response.data =>', response.data)
           commit('SET_TOOLS', response.data)
           commit('SET_PROCESSING', false, { root: true })
         }
@@ -38,7 +36,7 @@ const actions = {
         })
       })
   },
-  initStore: ({ commit, getters }, payload) => {
+  initStore: ({ commit }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
     return toolEndpoints.index({ payload })
       .then((response) => {
@@ -51,6 +49,7 @@ const actions = {
       })
   },
   create: ({ commit, getters }, payload) => {
+    commit('SET_TOOLS', [])
     commit('SET_PROCESSING', true, { root: true })
     return toolEndpoints.create({ payload })
       .then((response) => {
@@ -61,9 +60,7 @@ const actions = {
             color: 'green'
           })
 
-          commit('SET_TOOLS', [])
           commit('SET_TOOLS', getters['getTools'])
-          console.log('### getters=', getters['getTools'])
           commit('SET_PROCESSING', false, { root: true })
         }
       }).catch((error) => {
@@ -76,7 +73,6 @@ const actions = {
   },
   delete: ({ commit }, payload) => {
     commit('SET_PROCESSING', true, { root: true })
-    console.log('## destroy action=', payload)
     return toolEndpoints.destroy({ payload })
       .then((response) => {
         if (response.status === 200) {

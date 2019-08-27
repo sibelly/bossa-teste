@@ -56,7 +56,6 @@ class AuthController {
     const email = req.body.email;
     const senha = req.body.senha;
     let usuarioEncontrado: IUsuario;
-    console.log('loooogin!!!', req.body)
     try {
       const usuario = await Usuario.findOne({ email: email });
       if (!usuario) {

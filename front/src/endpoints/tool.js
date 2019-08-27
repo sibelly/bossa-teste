@@ -41,7 +41,6 @@ export function update (data) {
 }
 
 export function destroy (data) {
-  console.log('## endpoints destroy=>', data)
   return request({
     url: `/tools/${data.payload._id}`,
     method: 'delete'

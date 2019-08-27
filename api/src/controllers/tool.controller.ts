@@ -78,7 +78,6 @@ class ToolController {
  * @apiSuccess (200) {json} Delete tool.
  */
   public async destroy (req: Request, res: Response): Promise<Response> {
-    console.log('## destroy controller =>', req.params)
     const tool = await Tool.deleteOne(req.params)
     return res.status(200).json(tool)
   }
